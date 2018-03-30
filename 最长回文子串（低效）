@@ -1,0 +1,28 @@
+class Solution:
+    def longestPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        if not s:
+            return ""
+        if len(s) == 1:
+            return s
+        l = list(s)
+        g = len(s)
+        m = len(s)
+        k = len(s)
+        j = 1
+        while g > 1: 
+            for i in range(j):
+                c = l[i:m+i]
+                if c == c[::-1]:
+                    strs = ''.join(c)
+                    return strs
+                if m+i == len(s)+1:
+                    break
+                j += 1
+            m -= 1 
+            g -= 1
+        
+                
