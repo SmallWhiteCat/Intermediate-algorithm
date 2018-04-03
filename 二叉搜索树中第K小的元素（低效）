@@ -1,0 +1,22 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def kthSmallest(self, root, k):
+        """
+        :type root: TreeNode
+        :type k: int
+        :rtype: int
+        """
+        arr = []
+        self.smallest(root, arr)
+        return arr[k-1]
+    def smallest(self, root, arr):
+        if root:
+            self.smallest(root.left, arr)
+            arr.append(root.val)
+            self.smallest(root.right, arr)      
