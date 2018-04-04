@@ -1,0 +1,36 @@
+class Solution:
+    def numIslands(self, grid):
+        """
+        :type grid: List[List[str]]
+        :rtype: int
+        """
+        if grid is None: return None
+        if grid == []: return 0
+        # 当数组不为空时，计算行数和列数
+        self.n = len(grid)
+        self.m = len(grid[0])
+        x = 0
+        for i in range(self.n):
+            for j in range(self.m):
+                if grid[i][j] == '1':
+                    print(x)
+                    x += 1
+                    grid = self.change(grid,i,j)
+        return x
+     
+    def change(self,grid,i,j):
+        grid[i][j] = '0'
+        if i > 0 and grid[i-1][j] == '1':
+            # 置当前点上边的点为0
+            grid = self.change(grid,i-1,j)
+        if i < self.n-1 and grid[i+1][j] == '1':
+            # 置当前点下边的点为0
+            grid = self.change(grid,i+1,j)
+             
+        if j < self.m-1 and grid[i][j+1] == '1':
+            # 置当前点右方的点为0
+            grid = self.change(grid,i,j+1)
+        if j > 0 and grid[i][j-1] == '1':
+            # 置当前点左方的点为0
+            grid = self.change(grid,i,j-1)
+        return grid
