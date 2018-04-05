@@ -1,0 +1,39 @@
+class Solution:
+    def letterCombinations(self, digits):
+        """
+        :type digits: str
+        :rtype: List[str]
+        """
+        if len(digits) == 0 :
+            return []
+        letters = ['abcdefghijklmnopqrstuvwxyz']
+        arr = []
+        for i in digits:
+            num = int(i) - 2
+            tmp = []
+            if num == 5:
+                [tmp.append(letter) for letter in letters[num*3:(num+1)*3+1]]
+            elif num == 6:
+                [tmp.append(letter) for letter in letters[num*3+1:num*3+4]]
+            elif num == 7:
+                [tmp.append(letter) for letter in letters[num*3+1:]]
+            else:
+                [tmp.append(letter) for letter in letters[0][num*3:(num+1)*3]]
+            arr.append(tmp)
+        
+        k = 0
+        n = 1
+        while k < len(arr):
+            n *= len(arr[k])
+            k += 1
+        strs = []
+        self.alpha(arr, strs, 0, len(arr))
+    def alpha(self, arr, strs, cur, l):
+        if cur == l-1:
+            return arr[cur][]
+        for i in range(len(arr[cur])):
+            cur += 1
+            t = arr[cur][i]+self.alpha(arr, strs, cur, l)
+            print(t)
+            
+            
