@@ -1,0 +1,22 @@
+class Solution:
+    def letterCombinations(self, digits):
+        """
+        :type digits: str
+        :rtype: List[str]
+        """
+        if len(digits) == 0:
+            return []
+        letters = ['abc', 'def', 'ghi', 'jkl', 'mno', 'pqrs', 'tuv', 'wxyz']
+        tmp = ""
+        arr = []
+        l = len(digits)
+        self.alpha(digits, 0, l, tmp, arr, letters)
+        return arr
+    def alpha(self, digits, begin, end, tmp, arr, letters):
+        if begin == end:
+            arr.append(tmp)
+            return
+        for i in letters[int(digits[begin])-2]:                           
+            tmp += i
+            self.alpha(digits, begin+1, end, tmp, arr, letters)
+            tmp = tmp[:-1]
