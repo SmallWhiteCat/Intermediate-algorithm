@@ -1,0 +1,20 @@
+class Solution:
+    def generateParenthesis(self, n):
+        """
+        :type n: int
+        :rtype: List[str]
+        """
+        if n == 0:
+            return []
+        arr = []
+        cur = ''
+        
+        self.parentheses(arr, cur, n, n)
+        return arr
+    def parentheses(self, arr, cur, l, r):
+        if l == 0 and r == 0:
+            arr.append(cur)
+        if l>0:
+            self.parentheses(arr, cur+'(', l-1, r)
+        if r>0 and r>l:
+            self.parentheses(arr, cur+')', l, r-1)
