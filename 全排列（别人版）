@@ -1,0 +1,24 @@
+class Solution:
+    def permute(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        if len(nums) == 0:
+            return []
+        arr = []
+        cur = []
+        
+        nums.sort()
+        self.rank(nums, arr, cur, len(nums))
+        return arr
+    
+    def rank(self, nums, arr, cur, l):
+        if len(cur) == l:
+            arr.append(cur[:])
+        for i in nums:
+            if i in cur:
+                continue
+            cur.append(i)
+            self.rank(nums, arr, cur, l)
+            cur.remove(i)
