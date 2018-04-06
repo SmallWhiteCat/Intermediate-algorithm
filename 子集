@@ -1,0 +1,13 @@
+class Solution:
+    def subsets(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        if len(nums) == 0:
+            return []
+        arr = [[]]
+        for i in nums:
+            for j in range(len(arr)):
+                arr.append([i]+arr[j])
+        return arr 
