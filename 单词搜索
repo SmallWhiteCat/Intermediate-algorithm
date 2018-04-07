@@ -1,0 +1,44 @@
+class Solution:
+    def exist(self, board, word):
+        """
+        :type board: List[List[str]]
+        :type word: str
+        :rtype: bool
+        """
+        if len(word) == 0:
+            return False
+        sign = []
+        [sign.append([False]*len(board[0])) for i in range(len(board))]
+        for i in range(len(board)):
+            for j in range(len(board[0])):
+                if board[i][j] == word[0]:
+                    sign[i][j] = True
+                    if self.dfs(board, word[1:], i, j, sign):
+                        return True
+                    sign[i][j] = False
+        return False
+                    
+    def dfs(self, b, word, n, m, sign):
+        if len(word) == 0:
+            return True
+        if m>0 and not sign[n][m-1] and b[n][m-1] == word[0]:
+            sign[n][m-1] = True 
+            if self.dfs(b, word[1:], n, m-1, sign):
+                return True
+            sign[n][m-1] = False
+        if m<len(b[0])-1 and not sign[n][m+1] and b[n][m+1] == word[0]:
+            sign[n][m+1] = True
+            if self.dfs(b, word[1:], n, m+1, sign):
+                return True
+            sign[n][m+1] = False
+        if n>0 and not sign[n-1][m] and b[n-1][m] == word[0]:
+            sign[n-1][m] = True
+            if self.dfs(b, word[1:], n-1, m, sign):
+                return True
+            sign[n-1][m] = False
+        if n<len(b)-1 and not sign[n+1][m] and b[n+1][m] == word[0]:
+            sign[n+1][m] = True
+            if self.dfs(b, word[1:], n+1, m, sign):
+                return True
+            sign[n+1][m] = False
+        return False
