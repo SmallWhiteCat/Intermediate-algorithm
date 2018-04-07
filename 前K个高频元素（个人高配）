@@ -1,0 +1,22 @@
+class Solution:
+    def topKFrequent(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: List[int]
+        """
+        if k == 0:
+            return
+        dic = {}
+        for i in nums:
+            if i not in dic:
+                dic[i] = 1
+            else:
+                dic[i] += 1
+        
+        keys = dic.items()
+        key = sorted(keys, key=lambda x:x[1], reverse=True)
+        arr = []
+        for i in range(k):
+            arr.append(key[i][0])
+        return arr
