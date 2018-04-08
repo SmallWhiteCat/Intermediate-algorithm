@@ -1,0 +1,29 @@
+class Solution:
+    def searchMatrix(self, matrix, target):
+        """
+        :type matrix: List[List[int]]
+        :type target: int
+        :rtype: bool
+        """
+        if len(matrix) == 0:
+            return False
+        if len(matrix) == 1 and not matrix[0]:
+            return False
+        if target < matrix[0][0]:
+            return False
+        i, j = 0, 0
+        n, m = len(matrix)-1, len(matrix[0])-1
+        for i in range(len(matrix)): 
+            if matrix[i][-1] >= target:
+                l = 0
+                r = len(matrix[0])-1
+                med = (l+r) // 2
+                while l <= r:
+                    if matrix[i][med] == target:
+                        return True
+                    if matrix[i][med] > target:
+                        r = med - 1
+                    elif matrix[i][med] < target:
+                        l = med + 1
+                    med = (l+r) // 2                
+        return False    
