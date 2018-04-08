@@ -1,0 +1,29 @@
+class Solution:
+    def search(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: int
+        """
+        if len(nums) == 0:
+            return -1
+        if len(nums) == 1:
+            return 0 if nums[0] == target  else -1
+        l = 0
+        r = len(nums) - 1
+        med = (l+r) // 2
+        while l <= med and med <= r:        
+            if nums[med] == target:
+                return med
+            if nums[med] >= nums[l]:               
+                if nums[med] >= target and nums[l] <= target:
+                    r = med                   
+                else:
+                    l = med + 1
+            else:
+                if nums[med] <= target and nums[r] >= target:
+                    l = med                    
+                else:
+                    r = med - 1
+            med = (l+r) // 2  
+        return -1
