@@ -1,0 +1,21 @@
+class Solution:
+    def lengthOfLIS(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """ 
+        arr = []      
+        for i in range(len(nums)):  
+            l = 0  
+            r = len(arr)
+            while l < r:               #arr[x]大的位置,若没有,arr.append(nums[i]),若有,替换掉该位置         
+                mid = (l + r) //2       
+                if arr[mid] < nums[i]:       
+                    l = mid + 1        #通过循环l不断右移,直到 l(左边) >= r(右边)
+                else:  
+                    r = mid                 
+            if l > len(arr)-1:        #添加第一个元素的位置
+                arr.append(nums[i])  
+            else:                              
+                arr[l] = nums[i] 
+        return len(arr)  
