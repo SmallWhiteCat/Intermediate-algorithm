@@ -1,0 +1,22 @@
+class Solution:
+    def isHappy(self, n):
+        """
+        :type n: int
+        :rtype: bool
+        """
+        s = 0
+        k = 8
+        
+        while s != 1 and k > 0:
+            m = list(str(n))
+            s = 0
+            for i in m:
+                i = int(i)
+                s += i**2
+                
+            n = s
+            k -= 1
+            
+        if k == 0:
+            return False
+        return True
