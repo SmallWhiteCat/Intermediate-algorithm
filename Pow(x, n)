@@ -1,0 +1,23 @@
+class Solution:
+    def myPow(self, x, n):
+        """
+        :type x: float
+        :type n: int
+        :rtype: float
+        """
+        s = 1        
+        if n < 0:
+            n = -n
+            k = 0
+        else:
+            k = 1
+            
+        while n > 0: 
+            if n % 2 == 1:            
+                s *= x                    
+            n //= 2
+            x *= x
+            
+        if k:
+            return s
+        return 1/s
